@@ -12,42 +12,18 @@
 # end
 
 class Employee
-  def initialize(input_first_name, input_last_name, input_salary, input_active)
-    @first_name = input_first_name
-    @last_name = input_last_name
-    @salary = input_salary
-    @active = input_active
+  attr_reader :first_name, :last_name, :salary, :active
+  attr_writer :first_name, :last_name, :active
+
+  def initialize(input_options)
+    @first_name = input_options[:first_name]
+    @last_name = input_options[:last_name]
+    @salary = input_options[:salary]
+    @active = input_options[:active]
   end
 
-  def first_name
-    return @first_name
-  end
-  def first_name=(first_name)
-    @first_name = first_name
-  end
   def reverse_first_name
     return @first_name.reverse
-  end
-
-  def last_name
-    return @last_name
-  end
-  def last_name=(last_name)
-    @last_name = last_name
-  end
-
-  def salary
-    return @salary
-  end
-  def salary=(salary)
-    @salary = salary
-  end
-
-  def active
-    return @active
-  end
-  def active=(active)
-    @active = active
   end
 
   def info
@@ -59,7 +35,12 @@ class Employee
   end
 end
 
-employee_1 = Employee.new("Bill", "McNeal", 700000, true)
+employee_1 = Employee.new(
+                          first_name: "Bill", 
+                          last_name: "McNeal", 
+                          salary: 700000, 
+                          active: true
+                         )
 p employee_1.info
 p employee_1.give_annual_raise
 p employee_1.info
