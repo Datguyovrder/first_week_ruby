@@ -4,7 +4,7 @@ def fav_food
   idx=0
   num_loops = 5
   num_loops.times do
-    puts "Please enter your favorite food"
+    print "Please enter your favorite food: "
     input = gets.chomp
     array[idx] = input
     idx += 1
@@ -75,3 +75,53 @@ end
 p accounts_list
 
 #Exercise 4
+num_people=0
+people_array = []
+done = false
+puts
+while(!done)
+  print "Enter student name (q when done): "
+  name = gets.chomp
+  if (name.downcase == "q")
+    done = true
+  else
+    people_array << name
+    num_people += 1
+  end
+end
+
+p people_array
+p num_people
+
+def even_group(arr)
+  idx=0
+  idx2=0
+  arr_length = arr.length / 2
+  arr_length.times do
+    puts "group: #{arr[idx]} #{arr[idx2=idx+1]}"
+    idx+=2
+  end
+end
+
+def odd_group(arr)
+  idx=0
+  idx2=0
+  arr_length = arr.length - 3
+  if (arr_length == 0)
+    puts "group: #{arr[idx]} #{arr[idx2=idx+1]} #{arr[idx2=idx+2]}"
+  else
+    p arr_length / 2
+    (arr_length / 2).times do
+      puts "group: #{arr[idx]} #{arr[idx2=idx+1]}"
+       idx+=2
+    end
+
+  puts "group: #{arr[arr_length]} #{arr[arr_length+1]} #{arr[arr_length+2]}"
+  end
+end
+
+if (num_people % 2 == 0)
+  even_group(people_array)
+else
+  odd_group(people_array)
+end
