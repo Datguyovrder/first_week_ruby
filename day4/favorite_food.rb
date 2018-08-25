@@ -64,8 +64,17 @@ num_runs.times do
   print "Enter last name: "
   individual[:last_name] = gets.chomp
 
-  print "Enter email: "
-  individual[:email] = gets.chomp
+  valid_email = false
+  while (!valid_email)
+    print "Enter email: "
+    email = gets.chomp
+    if(email.include?("@") && email.slice(email.length-4, email.length) == ".com")
+      individual[:email] = email
+      valid_email = true      
+    else
+      puts "Email must have @ and end with .com"
+    end  
+  end
 
   puts
   individual[:acct_id] = rand(1000000000..9999999999)
@@ -73,6 +82,29 @@ num_runs.times do
 end
 
 p accounts_list
+puts
+pass = false
+
+while (!pass)
+  print "Enter account number: "
+  input = gets.chomp
+  ctr=0
+  for x in 0...accounts_list.length
+    if (input.to_i == accounts_list[x][:acct_id])
+      pass = true
+      puts "Account found"
+      puts "==============="
+      puts "#{accounts_list[x][:first_name]} #{accounts_list[x][:last_name]}"
+      puts accounts_list[x][:email]
+      break
+    else
+      ctr += 1
+      if (ctr == accounts_list.length)
+        puts "Account does not exist"
+      end
+    end
+  end
+end
 
 #Exercise 4
 num_people=0
